@@ -2,6 +2,7 @@ package dev.bstk.stoom.endereco.api;
 
 import dev.bstk.stoom.endereco.api.request.EnderecoRequest;
 import dev.bstk.stoom.endereco.api.response.EnderecoResponse;
+import dev.bstk.stoom.endereco.domain.Endereco;
 import dev.bstk.stoom.endereco.domain.EnderecoRepository;
 import dev.bstk.stoom.helper.ModelMapperHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -53,10 +54,11 @@ public class EnderecoResource {
     }
 
     @PostMapping
-    public ResponseEntity<EnderecoResponse> cadastrar(@RequestBody @Valid final EnderecoRequest endereco,
-                                                      final HttpServletResponse response) {
-        log.info("Cadastrando endereço = {}", endereco);
-        final var enderecoResponse = new EnderecoResponse();
+    public ResponseEntity<EnderecoResponse> cadastrar(@RequestBody @Valid final EnderecoRequest enderecoRequest,
+                                                                          final HttpServletResponse response) {
+        final var endereco = mapper.map(enderecoRequest, Endereco.class);
+        final var enderecoCadastrado = repository.save(endereco);
+        final var enderecoResponse = mapper.map(enderecoCadastrado, EnderecoResponse.class);
 
         final var uri = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}")
@@ -71,16 +73,31 @@ public class EnderecoResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<EnderecoResponse> atualizar(@PathVariable("id") final Long enderecoId,
-                                                      @RequestBody @Valid final EnderecoRequest endereco) {
-        log.info("Atualizando endereço = {}", endereco);
+                                                      @RequestBody @Valid final EnderecoRequest enderecoRequest) {
+        final var enderecoOptional = repository.findById(enderecoId);
 
-        final var enderecoResponse = new EnderecoResponse();
-        return ResponseEntity.ok(enderecoResponse);
+        if (enderecoOptional.isPresent()) {
+            final var endereco = mapper.map(enderecoRequest, Endereco.class);
+            endereco.setId(enderecoId);
+
+            final var enderecoAtualizado = repository.save(endereco);
+            final var enderecoResponse = mapper.map(enderecoAtualizado, EnderecoResponse.class);
+
+            return ResponseEntity.ok(enderecoResponse);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable("id") final Long id) {
-        log.info("Excluindo id = {}", id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> excluir(@PathVariable("id") final Long enderecoId) {
+        final var enderecoOptional = repository.findById(enderecoId);
+
+        if (enderecoOptional.isPresent()) {
+            repository.deleteById(enderecoId);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
