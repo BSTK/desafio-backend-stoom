@@ -7,13 +7,10 @@ import dev.bstk.stoom.endereco.domain.EnderecoRepository;
 import dev.bstk.stoom.helper.ModelMapperHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -54,8 +51,7 @@ public class EnderecoResource {
     }
 
     @PostMapping
-    public ResponseEntity<EnderecoResponse> cadastrar(@RequestBody @Valid final EnderecoRequest enderecoRequest,
-                                                                          final HttpServletResponse response) {
+    public ResponseEntity<EnderecoResponse> cadastrar(@RequestBody @Valid final EnderecoRequest enderecoRequest) {
         final var endereco = mapper.map(enderecoRequest, Endereco.class);
         final var enderecoCadastrado = repository.save(endereco);
         final var enderecoResponse = mapper.map(enderecoCadastrado, EnderecoResponse.class);
@@ -65,10 +61,7 @@ public class EnderecoResource {
             .buildAndExpand(enderecoResponse.getId())
             .toUri();
 
-        response.setStatus(HttpStatus.CREATED.value());
-        response.setHeader(HttpHeaders.LOCATION, uri.toASCIIString());
-
-        return ResponseEntity.ok(enderecoResponse);
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")

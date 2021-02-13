@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "latitude": "3.0",
+    "longitude": "4.0",
+    "streetName": "Rua Nova Paulina",
+    "number": "45A",
+    "complement": "Casa 1",
+    "neighbourhood": "Jardim Colibri",
+    "city": "Embu das Artes",
+    "state": "São Paulo - SP",
+    "country": "Brasil",
+    "zipcode": "06822-890"
+  },
+  {
+    "id": 2,
+    "latitude": "1.000999",
+    "longitude": "2.0",
+    "streetName": "Rua Dr. Joanopolis",
+    "number": "130",
+    "complement": "Apartamento 2",
+    "neighbourhood": "Jardim Coelba",
+    "city": "Itapecerica da Serra",
+    "state": "São Paulo - SP",
+    "country": "Brasil",
+    "zipcode": "00022-890"
+  },
+  {
+    "id": 3,
+    "latitude": "2.0",
+    "longitude": "2.000999",
+    "streetName": "Rua Da Maça",
+    "number": "100",
+    "complement": "Casa 1",
+    "neighbourhood": "Jardim Santo Antonio",
+    "city": "Curitiba",
+    "state": "Paraná - PR",
+    "country": "Brasil",
+    "zipcode": "99922-890"
+  }
+]

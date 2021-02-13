@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "latitude": "3.0",
+    "longitude": "4.0",
+    "rua": "Rua Nova Paulina",
+    "numero": "45A",
+    "complemento": "Casa 1",
+    "bairro": "Jardim Colibri",
+    "cidade": "Embu das Artes",
+    "estado": "São Paulo - SP",
+    "pais": "Brasil",
+    "cep": "06822-890"
+  },
+  {
+    "id": 2,
+    "latitude": "1.000999",
+    "longitude": "2.0",
+    "rua": "Rua Dr. Joanopolis",
+    "numero": "130",
+    "complemento": "Apartamento 2",
+    "bairro": "Jardim Coelba",
+    "cidade": "Itapecerica da Serra",
+    "estado": "São Paulo - SP",
+    "pais": "Brasil",
+    "cep": "00022-890"
+  },
+  {
+    "id": 3,
+    "latitude": "2.0",
+    "longitude": "2.000999",
+    "rua": "Rua Da Maça",
+    "numero": "100",
+    "complemento": "Casa 1",
+    "bairro": "Jardim Santo Antonio",
+    "cidade": "Curitiba",
+    "estado": "Paraná - PR",
+    "pais": "Brasil",
+    "cep": "99922-890"
+  }
+]
