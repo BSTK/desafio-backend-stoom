@@ -2,8 +2,9 @@ package dev.bstk.stoom.endereco.api;
 
 import dev.bstk.stoom.endereco.api.request.EnderecoRequest;
 import dev.bstk.stoom.endereco.api.response.EnderecoResponse;
-import dev.bstk.stoom.endereco.domain.Endereco;
-import dev.bstk.stoom.endereco.domain.EnderecoRepository;
+import dev.bstk.stoom.endereco.domain.EnderecoService;
+import dev.bstk.stoom.endereco.domain.model.Endereco;
+import dev.bstk.stoom.endereco.domain.model.EnderecoRepository;
 import dev.bstk.stoom.endereco.helper.TestHelper;
 import dev.bstk.stoom.helper.ModelMapperHelper;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +32,9 @@ public class EnderecoResourceTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private EnderecoService service;
 
     @MockBean
     private ModelMapperHelper mapper;

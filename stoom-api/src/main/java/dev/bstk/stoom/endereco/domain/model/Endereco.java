@@ -1,4 +1,4 @@
-package dev.bstk.stoom.endereco.domain;
+package dev.bstk.stoom.endereco.domain.model;
 
 import lombok.Data;
 

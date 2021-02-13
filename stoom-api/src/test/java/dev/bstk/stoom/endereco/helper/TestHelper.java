@@ -3,7 +3,7 @@ package dev.bstk.stoom.endereco.helper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.bstk.stoom.endereco.api.request.EnderecoRequest;
 import dev.bstk.stoom.endereco.api.response.EnderecoResponse;
-import dev.bstk.stoom.endereco.domain.Endereco;
+import dev.bstk.stoom.endereco.domain.model.Endereco;
 
 import java.io.File;
 import java.io.IOException;
