@@ -35,7 +35,7 @@ public class EnderecoService {
     }
 
     public Optional<Endereco> atualizar(final Long enderecoId,
-                              final EnderecoRequest enderecoRequest) {
+                                        final EnderecoRequest enderecoRequest) {
         final var enderecoOptional = repository.findById(enderecoId);
 
         if (enderecoOptional.isPresent()) {
