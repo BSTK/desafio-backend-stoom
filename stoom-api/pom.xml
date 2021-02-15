@@ -20,6 +20,7 @@
 		<java.version>11</java.version>
 		<modelmapper.version>2.3.0</modelmapper.version>
 		<mockit.junit.version>2.23.0</mockit.junit.version>
+		<springfox-swagger.version>2.9.2</springfox-swagger.version>
 	</properties>
 
 	<dependencies>
@@ -78,6 +79,20 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -126,7 +141,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<registry>https://hub.docker.com/bstk</registry>
+					<registry>https://hub.docker.com</registry>
 					<images>
 						<image>
 							<name>${project.name}</name>

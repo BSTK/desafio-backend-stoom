@@ -5,6 +5,8 @@ import dev.bstk.stoom.endereco.api.response.EnderecoResponse;
 import dev.bstk.stoom.endereco.domain.EnderecoService;
 import dev.bstk.stoom.endereco.domain.model.EnderecoRepository;
 import dev.bstk.stoom.helper.ModelMapperHelper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@Api("Api - Endereços")
 @RequestMapping("/api/v1/enderecos")
 public class EnderecoResource {
 
@@ -33,6 +36,7 @@ public class EnderecoResource {
     }
 
     @GetMapping
+    @ApiOperation("Listar todos os endereços")
     public ResponseEntity<List<EnderecoResponse>> buscarTodos() {
         final var enderecos = repository.findAll();
         final var enderecosResponse = mapper.mapList(enderecos, EnderecoResponse.class);
@@ -40,6 +44,7 @@ public class EnderecoResource {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Buscar um endereço por id")
     public ResponseEntity<EnderecoResponse> buscarPorId(@PathVariable("id") final Long enderecoId) {
         final var enderecoOptional = repository.findById(enderecoId);
 
@@ -53,6 +58,7 @@ public class EnderecoResource {
     }
 
     @PostMapping
+    @ApiOperation("Cadastrar um novo endereço")
     public ResponseEntity<EnderecoResponse> cadastrar(@RequestBody @Valid final EnderecoRequest enderecoRequest) {
         final var enderecoCadastrado = service.cadastrar(enderecoRequest);
         final var enderecoResponse = mapper.map(enderecoCadastrado, EnderecoResponse.class);
@@ -66,6 +72,7 @@ public class EnderecoResource {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Atualizar dads de um endereço existente")
     public ResponseEntity<EnderecoResponse> atualizar(@PathVariable("id") final Long enderecoId,
                                                       @RequestBody @Valid final EnderecoRequest enderecoRequest) {
         final var enderecoOptional = service.atualizar(enderecoId, enderecoRequest);
@@ -80,6 +87,7 @@ public class EnderecoResource {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Excluir um endereço existente")
     public ResponseEntity<Void> excluir(@PathVariable("id") final Long enderecoId) {
         final var enderecoOptional = repository.findById(enderecoId);
 
