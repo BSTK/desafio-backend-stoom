@@ -4,6 +4,7 @@ import dev.bstk.stoom.endereco.domain.integracao.EnderecoGoogleApiResponse;
 import dev.bstk.stoom.endereco.helper.TestHelper;
 import dev.bstk.stoom.helper.IntegracaoException;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,6 +39,7 @@ public class EnderecoGoogleApiServiceTest {
     private RestTemplate restTemplate;
 
     @Test
+    @DisplayName("Deve buscar dados na api do google com response OK")
     public void deveBuscarDadosNaApiDoGoogleComResponseOK() throws IOException {
         when(restTemplate.exchange(
             anyString(),
@@ -58,6 +60,7 @@ public class EnderecoGoogleApiServiceTest {
     }
 
     @Test
+    @DisplayName("Deve buscar dados na api do google com response NOK")
     public void deveBuscarDadosNaApiDoGoogleComResponseNOK() throws IOException {
         when(restTemplate.exchange(
             anyString(),
@@ -75,6 +78,7 @@ public class EnderecoGoogleApiServiceTest {
     }
 
     @Test
+    @DisplayName("Deve buscar dados na api do google com falha http")
     public void deveBuscarDadosNaApiDoGoogleComComFalhaHttp() {
         when(restTemplate.exchange(
             anyString(),
