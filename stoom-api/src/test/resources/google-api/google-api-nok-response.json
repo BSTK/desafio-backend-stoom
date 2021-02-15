@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "geometry": {
+        "location": {
+          "lat": 0.00000,
+          "lng": 0.00000
+        }
+      }
+    }
+  ],
+  "status": "BAD_REQUEST"
+}

@@ -19,6 +19,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<modelmapper.version>2.3.0</modelmapper.version>
+		<mockit.junit.version>2.23.0</mockit.junit.version>
 	</properties>
 
 	<dependencies>
@@ -68,6 +69,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Mockito Junit -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockit.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
