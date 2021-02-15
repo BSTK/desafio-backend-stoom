@@ -25,6 +25,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class EnderecoGoogleApiServiceTest {
 
+    private static final String CAMPO_GOOGLE_API_URL = "googleApiMapsUrl";
+    private static final String CAMPO_GOOGLE_API_KEY = "googleApiMapsApyKey";
+
+    private static final String CAMPO_GOOGLE_API_URL_VALOR = "https://googleapi.com";
+    private static final String CAMPO_GOOGLE_API_KEY_VALOR = "umaApiKeyValida";
+
     @InjectMocks
     private EnderecoGoogleApiService  service;
 
@@ -40,8 +46,8 @@ public class EnderecoGoogleApiServiceTest {
             eq(EnderecoGoogleApiResponse.class)))
             .thenReturn(ResponseEntity.ok(TestHelper.responseGoogleApiOK()));
 
-        ReflectionTestUtils.setField(service, "googleApiMapsUrl", "https://googleapi.com");
-        ReflectionTestUtils.setField(service, "googleApiMapsApyKey", "umaApiKeyValida");
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_URL, CAMPO_GOOGLE_API_URL_VALOR);
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_KEY, CAMPO_GOOGLE_API_KEY_VALOR);
 
         final var apiResponse = service.buscarDadosEndereco(TestHelper.request());
 
@@ -60,8 +66,8 @@ public class EnderecoGoogleApiServiceTest {
             eq(EnderecoGoogleApiResponse.class)))
             .thenReturn(ResponseEntity.badRequest().body(TestHelper.responseGoogleApiNOK()));
 
-        ReflectionTestUtils.setField(service, "googleApiMapsUrl", "https://googleapi.com");
-        ReflectionTestUtils.setField(service, "googleApiMapsApyKey", "umaApiKeyValida");
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_URL, CAMPO_GOOGLE_API_URL_VALOR);
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_KEY, CAMPO_GOOGLE_API_KEY_VALOR);
 
         Assertions.assertThatThrownBy(() -> service.buscarDadosEndereco(TestHelper.request()))
             .isInstanceOf(IntegracaoException.class)
@@ -77,8 +83,8 @@ public class EnderecoGoogleApiServiceTest {
             eq(EnderecoGoogleApiResponse.class)))
             .thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
 
-        ReflectionTestUtils.setField(service, "googleApiMapsUrl", "https://googleapi.com");
-        ReflectionTestUtils.setField(service, "googleApiMapsApyKey", "umaApiKeyValida");
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_URL, CAMPO_GOOGLE_API_URL_VALOR);
+        ReflectionTestUtils.setField(service, CAMPO_GOOGLE_API_KEY, CAMPO_GOOGLE_API_KEY_VALOR);
 
         Assertions.assertThatThrownBy(() -> service.buscarDadosEndereco(TestHelper.request()))
             .isInstanceOf(IntegracaoException.class)
