@@ -14,7 +14,8 @@
 
 ## Executar projeto local
 
-1 - Clone o projeto em: 
+
+1 - Clone o projeto em: ```git clone https://github.com/BSTK/desafio-backend-stoom.git```
 
 2 - Vá para pasta do projeto clonado: ```cd ./desafio-backend-stoom/stoom-api``` 
 
