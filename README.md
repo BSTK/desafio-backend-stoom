@@ -12,3 +12,22 @@
 - Docker
 - Swagger
 
+## Executar projeto local
+
+1 - Clone o projeto em: 
+
+2 - Vá para pasta do projeto clonado: ```cd ./desafio-backend-stoom/stoom-api``` 
+
+3 - A) Execute com o java: 
+  - ```mv clean install```
+  - ```java -jar target/*.jar```
+
+4 - A) Execute com Docker
+  - ```mvn clean install```
+  - ```mvn docker:build```
+  - ```docker run -it -p 8080:8080 stoom-api```
+
+5 - Link Swagger 
+    [Stoom Api Swagger UI](http://localhost:8080/stoom/swagger-ui.html#/)
+  
+
