@@ -45,9 +45,8 @@ public class EnderecoResourceTest {
     @Test
     @DisplayName("Deve cadastrar um novo endereço")
     public void deveCadastrarUmNovoEndereco() throws Exception {
-        when(mapper.map(any(EnderecoRequest.class), eq(Endereco.class))).thenReturn(TestHelper.endereco());
         when(mapper.map(any(Endereco.class), eq(EnderecoResponse.class))).thenReturn(TestHelper.response());
-        when(repository.save(any(Endereco.class))).thenReturn(TestHelper.endereco());
+        when(service.cadastrar(any(EnderecoRequest.class))).thenReturn(TestHelper.endereco());
 
         this.mockMvc.perform(
             post(ENDPOINT_API_V1_ENDERECOS)
@@ -63,10 +62,9 @@ public class EnderecoResourceTest {
     public void deveAtualizarUmEnderecoExistente() throws Exception {
         final var enderecoOptional = Optional.of(TestHelper.endereco());
 
-        when(repository.findById(anyLong())).thenReturn(enderecoOptional);
-        when(repository.save(any(Endereco.class))).thenReturn(TestHelper.endereco());
         when(mapper.map(any(EnderecoRequest.class), eq(Endereco.class))).thenReturn(TestHelper.endereco());
         when(mapper.map(any(Endereco.class), eq(EnderecoResponse.class))).thenReturn(TestHelper.response());
+        when(service.atualizar(anyLong(), any(EnderecoRequest.class))).thenReturn(enderecoOptional);
 
         this.mockMvc.perform(
             put(ENDPOINT_API_V1_ENDERECOS_ID, enderecoOptional.get().getId())

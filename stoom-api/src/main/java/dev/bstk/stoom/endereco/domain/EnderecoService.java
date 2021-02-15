@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Optional;
+
 @Service
 public class EnderecoService {
 
@@ -32,7 +34,7 @@ public class EnderecoService {
         return repository.save(endereco);
     }
 
-    public Endereco atualizar(final Long enderecoId,
+    public Optional<Endereco> atualizar(final Long enderecoId,
                               final EnderecoRequest enderecoRequest) {
         final var enderecoOptional = repository.findById(enderecoId);
 
@@ -41,11 +43,12 @@ public class EnderecoService {
             final var endereco = mapper.map(enderecoRequestValidada, Endereco.class);
             endereco.setId(enderecoId);
 
-            return repository.save(endereco);
+            final var enderecoCadastrado = repository.save(endereco);
+
+            return Optional.of(enderecoCadastrado);
         }
 
-        /// TODO: LANÇATR EXCEÇÃO DE NÃO ENCONTRADO
-        return null;
+        return Optional.empty();
     }
 
     private EnderecoRequest validarLongetudeLalitude(final EnderecoRequest enderecoRequest) {

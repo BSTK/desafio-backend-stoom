@@ -68,9 +68,15 @@ public class EnderecoResource {
     @PutMapping("/{id}")
     public ResponseEntity<EnderecoResponse> atualizar(@PathVariable("id") final Long enderecoId,
                                                       @RequestBody @Valid final EnderecoRequest enderecoRequest) {
-        final var enderecoAtualizado = service.atualizar(enderecoId, enderecoRequest);
-        final var enderecoResponse = mapper.map(enderecoAtualizado, EnderecoResponse.class);
-        return ResponseEntity.ok(enderecoResponse);
+        final var enderecoOptional = service.atualizar(enderecoId, enderecoRequest);
+
+        if (enderecoOptional.isPresent()) {
+            final var enderecoAtualizado = enderecoOptional.get();
+            final var enderecoResponse = mapper.map(enderecoAtualizado, EnderecoResponse.class);
+            return ResponseEntity.ok(enderecoResponse);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
